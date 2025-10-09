@@ -29,75 +29,70 @@ export default function ChangePin() {
       style={styles.gradient}
     >
       <SafeAreaView style={styles.safeArea}>
-        <KeyboardAvoidingView
-          style={{ flex: 1 }}
-          behavior={Platform.OS === "ios" ? "padding" : "height"}
-        >
-          {/* Header */}
-          <View style={styles.header}>
-            <Ionicons
-              onPress={() => router.back()}
-              name="chevron-back"
-              size={24}
-              color={theme.colors.text}
-            />
-          </View>
+        {/* Header */}
+        <View style={styles.header}>
+          <Ionicons
+            onPress={() => router.back()}
+            name="chevron-back"
+            size={24}
+            color={theme.colors.text}
+          />
+        </View>
 
-          {/* Title */}
-          <View style={{ marginTop: 25, paddingHorizontal: 15 }}>
-            <Text style={[styles.title, { color: theme.colors.text }]}>
-              Add Your 4-Digit Transfer PIN
-            </Text>
-            <Text style={[styles.subtitle, { color: theme.colors.text }]}>
-              This PIN helps you authorize transactions safely.
-            </Text>
-          </View>
+        {/* Title */}
+        <View style={{ marginTop: 25, paddingHorizontal: 15 }}>
+          <Text style={[styles.title, { color: theme.colors.text }]}>
+            Add Your 4-Digit Transfer PIN
+          </Text>
+          <Text style={[styles.subtitle, { color: theme.colors.text }]}>
+            This PIN helps you authorize transactions safely.
+          </Text>
+        </View>
 
-          {/* Input Stack */}
-          <View style={{ padding: 13, marginTop: 10 }}>
-            {/* Create Pin */}
-            <View style={styles.inputGroup}>
-              <View style={styles.otpWrapper}>
-                <Text style={[styles.labels, { color: theme.colors.text }]}>
-                  Create PIN
-                </Text>
-                <OTPInput length={4} />
-              </View>
-            </View>
-
-            {/* Confirm Pin */}
-            <View style={styles.inputGroup}>
-              <View style={styles.otpWrapper}>
-                <Text style={[styles.labels, { color: theme.colors.text }]}>
-                  Confirm PIN
-                </Text>
-                <OTPInput
-                  length={4}
-                  onComplete={() => router.push("/setup/welcome")}
-                />
-              </View>
-            </View>
-            <View style={styles.inputGroup}>
-              <View style={styles.otpWrapper}>
-                <Text style={[styles.labels, { color: theme.colors.text }]}>
-                  Confirm PIN
-                </Text>
-                <OTPInput
-                  length={4}
-                  onComplete={() => router.push("/setup/welcome")}
-                />
-              </View>
+        {/* Input Stack */}
+        <View style={{ padding: 13 }}>
+          {/* Create Pin */}
+          <View style={styles.inputGroup}>
+            <View style={styles.otpWrapper}>
+              <Text style={[styles.labels, { color: theme.colors.text }]}>
+                Enter Current PIN
+              </Text>
+              <OTPInput length={4} />
             </View>
           </View>
 
-          {/* Footer */}
-          <View style={styles.footer}>
-            <PrimaryButton
-              title="Verify & Continue"
-              style={{ width: width > 400 ? 360 : "90%", height: 55 }}
-            />
+          {/* Confirm Pin */}
+          <View style={styles.inputGroup}>
+            <View style={styles.otpWrapper}>
+              <Text style={[styles.labels, { color: theme.colors.text }]}>
+                Enter New PIN
+              </Text>
+              <OTPInput
+                length={4}
+                onComplete={() => router.push("/setup/welcome")}
+              />
+            </View>
           </View>
-        </KeyboardAvoidingView>
+          <View style={styles.inputGroup}>
+            <View style={styles.otpWrapper}>
+              <Text style={[styles.labels, { color: theme.colors.text }]}>
+                Enter New PIN Again
+              </Text>
+              <OTPInput
+                length={4}
+                onComplete={() => router.push("/setup/welcome")}
+              />
+            </View>
+          </View>
+        </View>
+
+        {/* Footer */}
+        <View style={styles.footer}>
+          <PrimaryButton
+            title="Verify & Continue"
+            style={{ width: width > 400 ? 360 : "90%", height: 55 }}
+          />
+        </View>
       </SafeAreaView>
     </LinearGradient>
   );

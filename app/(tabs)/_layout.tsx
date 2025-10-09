@@ -53,6 +53,7 @@ const hideOnScreens = [
   "/profile/appSecurity",
   "/profile/appSettings",
   "/profile/changePassword",
+  "/profile/changePin",
 ];
 
 export default function TabLayout() {
