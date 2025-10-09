@@ -1,0 +1,18 @@
+{
+  "extends": "expo/tsconfig.base",
+  "compilerOptions": {
+     "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "jsx": "react-native",  
+    "module": "esnext",  
+    "paths": {
+      "@/*": ["./*"]
+    }
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts"
+, "app/(tabs)/home"  ]
+}

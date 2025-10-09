@@ -1,0 +1,36 @@
+//cards
+
+ <LinearGradient
+            colors={["#1E1E1E", "#5B2C6F", "#8E44AD"]} // preffred charcoal → purple gradient1
+            start={{ x: 0, y: 0 }} // top-left
+            end={{ x: 1, y: 1 }} // bottom-right
+            style={styles.card1}
+          >
+
+         <LinearGradient
+            // colors={["#4C1D95", "#6B21A8"]} //  preffred charcoal → purple gradient2
+            colors={[
+              "rgba(28,28,28,0.95)", // charcoal black top
+              "rgba(28,28,28,0.85)",
+              "#2f1747", // purple bottom glow
+            ]}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            style={styles.card}
+          >
+
+          //background
+           <LinearGradient
+      colors={["#241036", "#13031a", "#241036"]}
+      locations={[0, 0.45, 1]}
+      start={{ x: 0, y: 0 }}
+      end={{ x: 1, y: 1 }}
+      style={styles.container}
+    >
+  //modal
+    <LinearGradient
+            colors={["#1A1A1A", "#3C1361", "#7E22"]} // charcoal → purple gradient
+            start={{ x: 0, y: 0 }} // top-left
+            end={{ x: 1, y: 0 }} // bottom-right
+            style={styles.transactionCard}
+          >
