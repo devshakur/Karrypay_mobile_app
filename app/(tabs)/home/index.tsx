@@ -8,7 +8,7 @@ import {
   Image,
   Dimensions,
 } from "react-native";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import AppHeader from "@/components/AppHeader";
 import { useTheme } from "@/theme/ThemeProvider";
 import * as NavigationBar from "expo-navigation-bar";
@@ -19,11 +19,14 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 import Feather from "@expo/vector-icons/Feather";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { LinearGradient } from "expo-linear-gradient";
+import FontAwesome from "@expo/vector-icons/FontAwesome";
+import { router } from "expo-router";
 
 const { width } = Dimensions.get("window");
 
 export default function Home() {
-  const { theme, isDark } = useTheme();
+  const { theme } = useTheme();
+  const [userTier, setUserTier] = useState("Tier1");
 
   const transactions = [
     {
@@ -67,38 +70,38 @@ export default function Home() {
       end={{ x: 1, y: 1 }}
       style={{ flex: 1 }}
     >
-      <SafeAreaView style={{ flex: 1, paddingHorizontal: "3%" }}>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <View style={{ padding: 5, paddingTop: "10%" }}>
-            <AppHeader />
-          </View>
+      <SafeAreaView style={{ flex: 1 }}>
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{
+            paddingHorizontal: "3%",
+            paddingTop: "10%",
+            paddingBottom: 100, // so you can scroll past the last item
+          }}
+        >
+          {/* Header */}
+          <AppHeader />
 
           {/* Balance Card */}
           <BlurView intensity={100} tint="dark" style={styles.glassCard}>
             <View style={styles.innerCard}>
               <View style={styles.balanceRow}>
-                <Text style={styles.balanceText}>₦5000.00</Text>
+                <Text style={styles.balanceText}>₦5,000.00</Text>
                 <View style={styles.eyeButton}>
                   <Ionicons name="eye-outline" size={20} color="#fff" />
                 </View>
               </View>
 
               <View style={styles.actionsRow}>
-                {/* <TouchableOpacity
-                  style={[
-                    styles.actionButton,
-                    { backgroundColor: "rgba(107, 33, 168, 0.4)" },
-                  ]}
+                <TouchableOpacity
+                  onPress={() => router.push("/(tabs)/home/sendMoney")}
+                  style={styles.actionButton1}
                 >
-                  <Feather name="send" size={20} color="#fff" />
-                  <Text style={styles.actionText}>Send</Text>
-                </TouchableOpacity> */}
-                <TouchableOpacity style={styles.actionButton1}>
                   <LinearGradient
-                    colors={["#000000", "#6B21A8"]} // black → purple
+                    colors={["#000000", "#6B21A8"]}
                     start={{ x: 0, y: 0 }}
                     end={{ x: 1, y: 1 }}
-                    style={StyleSheet.absoluteFill} // fills the whole button
+                    style={StyleSheet.absoluteFill}
                   />
                   <Feather name="send" size={20} color="#fff" />
                   <Text style={styles.actionText}>Send</Text>
@@ -107,7 +110,7 @@ export default function Home() {
                 <TouchableOpacity
                   style={[
                     styles.actionButton,
-                    { backgroundColor: "rgba(75, 85, 99, 0.4)" },
+                    { backgroundColor: "rgba(75,85,99,0.4)" },
                   ]}
                 >
                   <Feather name="arrow-up" size={20} color="#fff" />
@@ -117,7 +120,7 @@ export default function Home() {
                 <TouchableOpacity
                   style={[
                     styles.actionButton,
-                    { backgroundColor: "rgba(75, 85, 99, 0.4)" },
+                    { backgroundColor: "rgba(75,85,99,0.4)" },
                   ]}
                 >
                   <MaterialCommunityIcons
@@ -131,9 +134,33 @@ export default function Home() {
             </View>
           </BlurView>
 
-          {/* Pay Bills Card */}
+          {/* Tier Notice */}
+          {userTier === "Tier1" && (
+            <TouchableOpacity
+              onPress={() => router.push("/home/kycVerification")}
+            >
+              <View style={styles.tierNotice}>
+                <View style={styles.tierLeft}>
+                  <View style={styles.tierIcon}>
+                    <FontAwesome name="bank" size={24} color="#92400E" />
+                  </View>
+
+                  <View>
+                    <Text style={styles.tierTextMain}>
+                      Get your wallet account complete
+                    </Text>
+                    <Text style={styles.tierTextSub}>Complete KYC</Text>
+                  </View>
+                </View>
+
+                <Ionicons name="chevron-forward" size={24} color="#000" />
+              </View>
+            </TouchableOpacity>
+          )}
+
+          {/* Pay Bills */}
           <LinearGradient
-            colors={["#000000", "#6B21A8"]} // black → purple gradient
+            colors={["#000000", "#6B21A8"]}
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
             style={styles.payBillsCard}
@@ -150,11 +177,12 @@ export default function Home() {
             />
           </LinearGradient>
 
+          {/* Carousel */}
           <View style={{ marginTop: 6 }}>
             <Carousel total={3} current={2} />
           </View>
 
-          {/* Transaction History */}
+          {/* Transactions */}
           <BlurView intensity={40} tint="dark" style={styles.glassCard}>
             <View style={styles.innerCard}>
               <Text style={styles.transactionTitle}>Transaction History</Text>
@@ -205,10 +233,9 @@ const styles = StyleSheet.create({
     marginTop: 16,
   },
   innerCard: {
-    backgroundColor: "rgba(255,255,255,0.09)", // frosted overlay
+    backgroundColor: "rgba(255,255,255,0.09)",
     padding: 20,
   },
-
   balanceRow: {
     flexDirection: "row",
     justifyContent: "space-between",
@@ -238,9 +265,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     gap: 6,
-    borderWidth: 1,
-    borderColor: "#6B21A8",
-    overflow: "hidden",
   },
   actionButton1: {
     flex: 1,
@@ -251,18 +275,57 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     gap: 6,
-
     overflow: "hidden",
   },
   actionText: { color: "#fff", fontSize: 14, fontFamily: "ManropeMedium" },
 
+  tierNotice: {
+    backgroundColor: "#FDE68A",
+    padding: 12,
+    width: "100%",
+    borderRadius: 8,
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginTop: 12,
+  },
+  tierLeft: { flexDirection: "row", alignItems: "center", gap: 10 },
+  tierIcon: {
+    height: 50,
+    width: 50,
+    borderWidth: 1,
+    borderColor: "#F59E0B",
+    borderRadius: 25,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  tierTextMain: {
+    color: "#000",
+    fontFamily: "ManropeMedium",
+    fontSize: 14,
+  },
+  tierTextSub: {
+    color: "#92400E",
+    fontFamily: "ManropeMedium",
+    fontSize: 13,
+  },
+
+  payBillsCard: {
+    width: "100%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    borderRadius: 16,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    marginTop: 16,
+  },
   payTitle: { fontSize: 18, fontFamily: "ManropeSemiBold", color: "#fff" },
   paySubtitle: {
     fontSize: 14,
     fontFamily: "ManropeMedium",
     color: "rgba(255,255,255,0.7)",
   },
-
   transactionTitle: {
     fontSize: 16,
     fontFamily: "ManropeSemiBold",
@@ -290,15 +353,5 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontFamily: "ManropeRegular",
     color: "rgba(255,255,255,0.7)",
-  },
-  payBillsCard: {
-    width: "100%",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    borderRadius: 16,
-    paddingHorizontal: 15,
-    paddingVertical: 10,
-    marginTop: 16,
   },
 });

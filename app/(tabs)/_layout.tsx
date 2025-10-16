@@ -42,7 +42,13 @@ const hideOnScreens = [
   "home/electricitysuccess",
   "home/cablesuccess",
   "home/educationsuccess",
+  "home/kycVerification",
+  "home/kycOne",
+  "home/kycTwo",
   "cards/viewCards",
+  "home/passportScan",
+  "home/kysSubmitted",
+  "home/nin",
   "/savings/savingsSuccess",
   "/savings/savingsDetails",
   "/savings/autoSave",
@@ -53,6 +59,9 @@ const hideOnScreens = [
   "/profile/appSecurity",
   "/profile/appSettings",
   "/profile/changePassword",
+  "/profile/changePin",
+  "/profile/prices",
+  "/home/notifications",
 ];
 
 export default function TabLayout() {
