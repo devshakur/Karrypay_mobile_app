@@ -5,6 +5,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 import CustomButton from "@/components/customButton";
 import PasswordAuthModal from "@/components/AuthModals/PswdAuthModal";
+import DateInput from "@/components/DateInputs";
 
 export default function ChangeDate() {
   const router = useRouter();
@@ -35,9 +36,12 @@ export default function ChangeDate() {
             padding: 10,
           }}
         >
-          Let KarrySave automatically deduct daily, weekly, or monthly. So you
-          can build wealth without lifting a finger.
+          Lock your funds until a specific date to stay disciplined and avoid
+          impulse spending
         </Text>
+      </View>
+      <View style={{ padding: 10 }}>
+        <DateInput label="Set Withrawal Day" onSelectDate={console.log} />
       </View>
       {/* Input Calender */}
       <View style={{ padding: 10 }}>

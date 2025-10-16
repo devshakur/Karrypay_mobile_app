@@ -21,7 +21,12 @@ const settingsData: SettingItem[] = [
     icon: "person-circle-outline",
     path: "/profile/profileSetting",
   },
-  { id: "2", name: "KYC Upgrade", icon: "shield-checkmark-outline", path: "/" },
+  {
+    id: "2",
+    name: "KYC Upgrade",
+    icon: "shield-checkmark-outline",
+    path: "/profile/prices",
+  },
 
   {
     id: "4",

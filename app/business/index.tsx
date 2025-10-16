@@ -20,27 +20,19 @@ import SecondaryButton from "@/components/screens/ui/buttons/SecondaryButton";
 
 const { width } = Dimensions.get("window");
 
-const onboardingSteps = [
-  {
-    image: require("../../assets/images/splash2.png"),
-    title: "Secure Transactions",
-    subtitle:
-      "Experience fast and encrypted transactions, built with your safety in mind.",
-  },
-  {
-    image: require("../../assets/images/splash3.png"),
-    title: "Pay Bills Seamlessly",
-    subtitle:
-      "Settle your electricity, water, and more—all in one place, effortlessly.",
-  },
-
+const businessOnboardingSteps = [
   {
     image: require("../../assets/images/splash1.png"),
     title: "Africa’s First Biometric Payment",
     subtitle:
       "Send and receive money in seconds using your face, fingerprint, or a simple ID.",
   },
-
+  {
+    image: require("../../assets/images/splash2.png"),
+    title: "Secure Transactions",
+    subtitle:
+      "Experience fast and encrypted transactions, built with your safety in mind.",
+  },
   {
     image: require("../../assets/images/splash3.png"),
     title: "Pay Bills Seamlessly",

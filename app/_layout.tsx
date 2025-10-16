@@ -64,6 +64,7 @@ function RootLayoutNav() {
         <Stack.Screen name="auth" />
         <Stack.Screen name="setup" />
         <Stack.Screen name="logins" />
+        <Stack.Screen name="tiers" />
         <Stack.Screen
           name="(modals)/bottomModal"
           options={{ presentation: "transparentModal" }}
