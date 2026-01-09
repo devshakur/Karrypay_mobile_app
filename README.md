@@ -68,5 +68,5 @@
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/yourusername/KarryPay.git
+git clone https://github.com/devshakur/Karrypay_mobile_app.git
 cd KarryPay
